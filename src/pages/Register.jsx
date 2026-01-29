@@ -51,7 +51,7 @@ const Register = () => {
             <div className="w-full border-t border-soft"></div>
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-[var(--bg-main)] px-4 text-muted text-xs sm:text-sm">
+            <span className="bg-[var(--bg-main)] px-4 text-muted text-md">
               or
             </span>
           </div>
@@ -61,22 +61,11 @@ const Register = () => {
         <div className="text-center">
           <button
             onClick={() => navigate("/")}
-            className="text-muted hover:text-[var(--accent)] text-xs sm:text-sm transition-colors underline cursor-pointer"
+            className="text-muted hover:text-[var(--accent)] text-lg  transition-colors underline cursor-pointer"
           >
             Return to the archives
           </button>
         </div>
-
-        {/* Footer Note */}
-        <p className="text-center meta text-[0.6rem] sm:text-[0.65rem] mt-4 text-muted px-4">
-          Already have an account?{" "}
-          <button
-            onClick={() => navigate("/login")}
-            className="text-[var(--accent)] hover:underline cursor-pointer"
-          >
-            Sign in
-          </button>
-        </p>
       </div>
     </div>
   );

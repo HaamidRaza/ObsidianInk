@@ -284,7 +284,7 @@ const Navbar = () => {
 
             <SignedOut>
               <Link
-                to="/login"
+                to="/register"
                 onClick={() => setOpen(false)}
                 className="btn-vintage cursor-pointer transition-all px-6 py-3 no-underline"
               >
