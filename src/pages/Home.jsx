@@ -10,13 +10,10 @@ const Home = () => {
       <div className="flex items-center justify-between">
         {/* title */}
         <div>
-          <h1>A Chronicle of Ideas, Insights & Inspiration</h1>
+          <h1>A <span className="text-(--accent)">Chronicle</span> of Ideas, Insights & Inspiration</h1>
           <p>
             Step into a curated collection where thoughtful writing meets
-            timeless design. Explore articles penned by voices both familiar and
-            new, save the pieces that speak to you, and contribute your own
-            chapters to this ever-growing anthology of human experience and
-            creativity.
+            timeless design.
           </p>
         </div>
         {/* animated button */}

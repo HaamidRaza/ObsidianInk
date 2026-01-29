@@ -246,6 +246,13 @@ const Navbar = () => {
 
           {/* Menu Items */}
           <nav className="flex flex-col items-center gap-8 text-2xl">
+            <Link
+              to="/write"
+              onClick={() => setOpen(false)}
+              className="border-b-2 border-soft hover:text-[var(--accent)] transition-colors no-underline"
+            >
+              Write
+            </Link>
             {!role && (
               <Link
                 to="/blogs?sort=trending"

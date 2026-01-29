@@ -56,7 +56,7 @@ const FeaturedPosts = () => {
   const secondaryBlogs = blogs.slice(1, 4);
 
   return (
-    <div className="mt-8 md:mt-6 lg:mt-2 mb-12 md:mb-16 lg:mb-20 max-w-7xl px-4">
+    <div className="mt-8 md:mt-6 lg:mt-10 mb-12 md:mb-16 lg:mb-20 max-w-7xl px-4">
       {/* Section Header */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl mb-2">
@@ -64,7 +64,7 @@ const FeaturedPosts = () => {
         </h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 md:px-12">
         {/* Main Featured Post */}
         <div className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6 group">
           {/* Image */}
@@ -86,11 +86,11 @@ const FeaturedPosts = () => {
             <span className="flex items-baseline sm:flex-col md:flex-row md:items-center gap-1 sm:gap-2">
               <Link
                 to={`/blogs?cat=${mainBlog.category}`}
-                className="meta text-[0.65rem] sm:text-[0.7rem] px-2 py-1 border border-soft hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all no-underline uppercase"
+                className="meta text-[0.65rem] md:text-[0.9rem] px-2 py-1 border border-soft hover:border-(--accent) transition-all no-underline uppercase"
               >
                 {mainBlog.category}
               </Link>
-              <span className="text-muted text-xs">
+              <span className="text-muted text-sm">
                 {format(mainBlog.createdAt)}
               </span>
             </span>
@@ -101,7 +101,7 @@ const FeaturedPosts = () => {
             to={`/${mainBlog.slug}`}
             className="text-xl sm:text-2xl md:text-3xl leading-tight hover:text-[var(--accent)] transition-colors no-underline"
           >
-            <h2>{mainBlog.title}</h2>
+            <h2 className="line-clamp-2">{mainBlog.title}</h2>
             <p className="text-sm md:text-[20px] text-muted line-clamp-2 mt-2">
               {mainBlog.desc}
             </p>
@@ -147,10 +147,10 @@ const FeaturedPosts = () => {
                   </span>
                 </div>
                 <Link to={`/${blog.slug}`}>
-                  <h4 className="text-base sm:text-lg md:text-xl leading-snug hover:text-[var(--accent)] transition-colors no-underline">
+                  <h4 className="text-base sm:text-lg md:text-xl leading-snug hover:text-(--accent) line-clamp-2 transition-colors no-underline">
                     {blog.title}
                   </h4>
-                  <p className="text-sm md:text-md text-muted line-clamp-2 mt-1">
+                  <p className="text-sm md:text-md text-muted line-clamp-1 mt-1">
                     {blog.desc}
                   </p>
                 </Link>

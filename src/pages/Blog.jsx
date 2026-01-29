@@ -78,7 +78,7 @@ const Blog = () => {
         <link rel="canonical" href={currentUrl} />
       </Helmet>
 
-      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-0 py-12">
+      <div className="max-w-350 mx-auto px-1 sm:px-4 lg:px-0">
         {/* Hero Section */}
         <article className="article">
           <div className="flex flex-col items-center lg:flex-row gap-8 lg:gap-12">

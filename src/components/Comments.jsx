@@ -84,7 +84,7 @@ const Comments = ({ blogId }) => {
           </button>
         </form>
       ) : (
-        <div className="md:mb-2 p-4 bg-[var(--bg-main)] border border-soft text-center">
+        <div className="mb-4 p-4 bg-[var(--bg-main)] border border-soft text-center">
           <p className="text-muted">
             Please{" "}
             <a href="/login" className="accent hover:underline">
