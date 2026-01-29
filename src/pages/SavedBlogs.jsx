@@ -1,8 +1,6 @@
-// pages/SavedBlogs.jsx
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import { Eye, Calendar, Bookmark } from "lucide-react";
 import { format } from "timeago.js";
@@ -17,8 +15,13 @@ const fetchSavedBlogs = async (token) => {
 
 const SavedBlogs = () => {
   const { getToken } = useAuth();
-
-  const { data: savedBlogs, isLoading, error } = useQuery({
+  const { user } = useUser();
+  const role = user?.id;
+  const {
+    data: savedBlogs,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["savedBlogs"],
     queryFn: async () => {
       const token = await getToken();
@@ -55,7 +58,8 @@ const SavedBlogs = () => {
           <h1 className="text-3xl sm:text-4xl">Saved Blogs</h1>
         </div>
         <p className="text-muted">
-          {savedBlogs?.length || 0} saved article{savedBlogs?.length !== 1 ? "s" : ""}
+          {savedBlogs?.length || 0} saved article
+          {savedBlogs?.length !== 1 ? "s" : ""}
         </p>
       </div>
 
@@ -108,10 +112,7 @@ const SavedBlogs = () => {
                 </div>
 
                 {/* Title */}
-                <Link
-                  to={`/${blog.slug}`}
-                  className="block mb-3 no-underline"
-                >
+                <Link to={`/${blog.slug}`} className="block mb-3 no-underline">
                   <h3 className="text-lg sm:text-xl font-semibold line-clamp-2 group-hover:text-[var(--accent)] transition-colors">
                     {blog.title}
                   </h3>

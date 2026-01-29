@@ -67,7 +67,7 @@ const Navbar = () => {
             className="h-8 w-8 sm:h-10 sm:w-10 transition-opacity group-hover:opacity-70"
             alt="logo"
           />
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider transition-colors group-hover:accent">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-[350] tracking-wider transition-colors group-hover:accent">
             Obsidian Ink
           </h3>
         </span>
@@ -246,14 +246,24 @@ const Navbar = () => {
 
           {/* Menu Items */}
           <nav className="flex flex-col items-center gap-8 text-2xl">
-            <Link
-              to="/saved"
-              onClick={() => setOpen(false)}
-              className="hover:text-[var(--accent)] transition-colors no-underline"
-            >
-              Saved
-            </Link>
-
+            {!role && (
+              <Link
+                to="/blogs?sort=trending"
+                onClick={() => setOpen(false)}
+                className="hover:text-[var(--accent)] transition-colors no-underline"
+              >
+                Trending
+              </Link>
+            )}
+            {role && (
+              <Link
+                to="/saved"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer transition-all no-underline"
+              >
+                Saved
+              </Link>
+            )}
             <Link
               to="/blogs"
               onClick={() => setOpen(false)}
@@ -287,6 +297,15 @@ const Navbar = () => {
 
       {/* Desktop menu */}
       <div className="hidden md:flex items-center gap-4 xl:gap-10">
+        {role && (
+          <Link
+            to="/saved"
+            onClick={() => setOpen(false)}
+            className="cursor-pointer transition-all no-underline"
+          >
+            Saved
+          </Link>
+        )}
         <Link
           to="/blogs"
           onClick={() => setOpen(false)}
@@ -295,13 +314,16 @@ const Navbar = () => {
         >
           Blog List
         </Link>
-        <Link
-          to="/saved"
-          className="flex items-center gap-2 hover:text-[var(--accent)]"
-        >
-          <span>Saved</span>
-        </Link>
 
+        {!role && (
+          <Link
+            to="/blogs?sort=trending"
+            onClick={() => setOpen(false)}
+            className="hover:text-[var(--accent)] transition-colors no-underline"
+          >
+            Trending
+          </Link>
+        )}
         {/* Dark Mode Toggle - Desktop */}
         <button
           onClick={toggleDarkMode}
