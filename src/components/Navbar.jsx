@@ -26,6 +26,18 @@ const Navbar = () => {
       document.documentElement.classList.remove("dark");
     }
   }, []);
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [open]);
 
   // Toggle dark mode
   const toggleDarkMode = () => {
@@ -209,38 +221,67 @@ const Navbar = () => {
 
       {/* MOBILE LINK LIST */}
       {open && (
-        <div className="w-full h-screen text-xl flex flex-col items-center justify-center gap-8 absolute top-24 left-0 bg-paper z-50 border-t border-soft">
-          <Link
-            to="/saved"
-            reloadDocument
-            className="flex items-center gap-2 hover:text-[var(--accent)]"
-          >
-            <span>Saved</span>
-          </Link>
-          <Link
-            to="/blogs"
+        <div className="w-full h-screen flex flex-col items-center justify-center gap-8 fixed top-0 left-0 bg-paper z-50 overflow-hidden">
+          {/* Close button */}
+          <button
             onClick={() => setOpen(false)}
-            reloadDocument
-            className="hover:accent transition-colors"
+            className="absolute top-8 right-8 p-2 hover:text-[var(--accent)] transition-colors"
+            aria-label="Close menu"
           >
-            Blog List
-          </Link>
-          {role && (
-            <button
-              onClick={() => navigate("/dashboard")}
-              className="btn-vintage cursor-pointer transition-all text-[0.65rem] sm:text-[0.75rem] px-3 py-2 sm:px-6 sm:py-3"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-8 h-8"
             >
-              Dashboard
-            </button>
-          )}
-          <SignedOut>
-            <button
-              onClick={() => navigate("/login")}
-              className="btn-vintage cursor-pointer transition-all text-[0.65rem] sm:text-[0.75rem] px-3 py-2 sm:px-6 sm:py-3"
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Menu Items */}
+          <nav className="flex flex-col items-center gap-8 text-2xl">
+            <Link
+              to="/saved"
+              onClick={() => setOpen(false)}
+              className="hover:text-[var(--accent)] transition-colors no-underline"
             >
-              Get started
-            </button>
-          </SignedOut>
+              Saved
+            </Link>
+
+            <Link
+              to="/blogs"
+              onClick={() => setOpen(false)}
+              className="hover:text-[var(--accent)] transition-colors no-underline"
+            >
+              Blog List
+            </Link>
+
+            {role && (
+              <Link
+                to="/dashboard"
+                onClick={() => setOpen(false)}
+                className="btn-vintage cursor-pointer transition-all px-6 py-3 no-underline"
+              >
+                Dashboard
+              </Link>
+            )}
+
+            <SignedOut>
+              <Link
+                to="/login"
+                onClick={() => setOpen(false)}
+                className="btn-vintage cursor-pointer transition-all px-6 py-3 no-underline"
+              >
+                Get Started
+              </Link>
+            </SignedOut>
+          </nav>
         </div>
       )}
 
