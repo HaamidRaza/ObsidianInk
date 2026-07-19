@@ -11,7 +11,7 @@ const fetchBlogs = async () => {
   if (!res.data) {
     throw new Error("Blog not found");
   }
-  
+
   return res.data;
 };
 
@@ -36,7 +36,7 @@ const FeaturedPosts = () => {
 
   if (error) {
     return (
-      <div className="mt-12 sm:mt-16 md:mt-20 mb-12 sm:mb-16 md:mb-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="mt-12 md:mt-16 lg:mt-20 mb-12 md:mb-16 lg:mb-20 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-12">
         <div className="text-center text-red-500">
           Something went wrong! {error.message}
         </div>
@@ -45,7 +45,7 @@ const FeaturedPosts = () => {
   }
 
   const blogs = data.blogs;
-  
+
   if (!blogs || blogs.length === 0) {
     return null;
   }
@@ -56,7 +56,7 @@ const FeaturedPosts = () => {
   const secondaryBlogs = blogs.slice(1, 4);
 
   return (
-    <div className="mt-8 md:mt-6 lg:mt-10 mb-12 md:mb-16 lg:mb-20 max-w-7xl px-4">
+    <div className="mt-12 md:mt-16 lg:mt-20 mb-12 md:mb-16 lg:mb-20 max-w-7xl mx-auto px-4 md:px-6 lg:px-0">
       {/* Section Header */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl mb-2">
@@ -64,7 +64,7 @@ const FeaturedPosts = () => {
         </h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 md:px-12">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
         {/* Main Featured Post */}
         <div className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6 group">
           {/* Image */}
@@ -72,25 +72,25 @@ const FeaturedPosts = () => {
             <Link to={`/${mainBlog.slug}`}>
               <CustomImage
                 src={mainBlog.img || "sheeps.jpg"}
-                className="w-full aspect-[4/3] object-cover transition-opacity duration-500 group-hover:opacity-75 rounded-2xl"
+                className="w-full aspect-4/3 object-cover transition-opacity duration-500 group-hover:opacity-75 rounded-2xl"
                 width="895"
               />
             </Link>
           </div>
 
           {/* Details */}
-          <div className="flex items-center justify-between gap-3 sm:gap-4 text-sm sm:text-base">
-            <span className="text-3xl sm:text-4xl font-light text-[var(--accent)]">
+          <div className="flex items-center justify-between gap-3 sm:gap-4">
+            <span className="text-3xl sm:text-4xl font-light text-(--accent) leading-none">
               01.
             </span>
-            <span className="flex items-baseline sm:flex-col md:flex-row md:items-center gap-1 sm:gap-2">
+            <span className="flex flex-wrap items-center justify-end gap-2 sm:gap-3">
               <Link
                 to={`/blogs?cat=${mainBlog.category}`}
-                className="meta text-[0.65rem] md:text-[0.9rem] px-2 py-1 border border-soft hover:border-(--accent) transition-all no-underline uppercase"
+                className="meta text-[0.65rem] md:text-[0.7rem] px-2 py-1 border border-soft hover:border-(--accent) transition-all no-underline uppercase tracking-wide leading-none"
               >
                 {mainBlog.category}
               </Link>
-              <span className="text-muted text-sm">
+              <span className="text-muted text-xs sm:text-sm leading-none">
                 {format(mainBlog.createdAt)}
               </span>
             </span>
@@ -99,10 +99,10 @@ const FeaturedPosts = () => {
           {/* Title */}
           <Link
             to={`/${mainBlog.slug}`}
-            className="text-xl sm:text-2xl md:text-3xl leading-tight hover:text-[var(--accent)] transition-colors no-underline"
+            className="text-xl sm:text-2xl md:text-3xl leading-tight hover:text-(--accent) transition-colors no-underline"
           >
             <h2 className="line-clamp-2">{mainBlog.title}</h2>
-            <p className="text-sm md:text-[20px] text-muted line-clamp-2 mt-2">
+            <p className="text-sm md:text-base text-muted line-clamp-2 mt-2 leading-relaxed">
               {mainBlog.desc}
             </p>
           </Link>
@@ -129,19 +129,19 @@ const FeaturedPosts = () => {
                 </Link>
               </div>
 
-              <div className="w-2/3 flex flex-col gap-2 sm:gap-3">
-                <div className="flex items-center justify-between gap-2 sm:gap-3 text-xs sm:text-sm">
-                  <span className="text-2xl sm:text-3xl font-light text-[var(--accent)]">
+              <div className="w-2/3 flex flex-col justify-center gap-2 sm:gap-3">
+                <div className="flex items-center justify-between gap-2 sm:gap-3">
+                  <span className="text-2xl sm:text-3xl font-light text-(--accent) leading-none">
                     0{index + 2}.
                   </span>
-                  <span className="flex items-baseline sm:flex-col md:flex-row md:items-center gap-1 sm:gap-2">
+                  <span className="flex flex-wrap items-center justify-end gap-1.5 sm:gap-2">
                     <Link
                       to={`/blogs?cat=${blog.category}`}
-                      className="inline-flex items-center px-2.5 py-0.5 border border-soft hover:border-[var(--accent)] hover:text-[var(--accent)] sm:text-[0.65rem] font-medium hover:opacity-80 transition-opacity no-underline uppercase"
+                      className="inline-flex items-center px-2.5 py-0.5 border border-soft hover:border-(--accent) hover:text-(--accent) text-[0.6rem] sm:text-[0.65rem] font-medium hover:opacity-80 transition-opacity no-underline uppercase tracking-wide leading-none"
                     >
                       {blog.category}
                     </Link>
-                    <span className="text-muted text-[0.65rem] sm:text-xs">
+                    <span className="text-muted text-[0.65rem] sm:text-xs leading-none">
                       {format(blog.createdAt)}
                     </span>
                   </span>
@@ -150,7 +150,7 @@ const FeaturedPosts = () => {
                   <h4 className="text-base sm:text-lg md:text-xl leading-snug hover:text-(--accent) line-clamp-2 transition-colors no-underline">
                     {blog.title}
                   </h4>
-                  <p className="text-sm md:text-md text-muted line-clamp-1 mt-1">
+                  <p className="text-sm text-muted line-clamp-1 mt-1 leading-relaxed">
                     {blog.desc}
                   </p>
                 </Link>

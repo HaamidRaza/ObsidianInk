@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-12 border-b border-soft max-w-full mx-auto">
+    <div className="flex justify-between items-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-0 border-b border-soft max-w-full mx-auto">
       {/* LOGO */}
       <div className="flex items-center gap-4 text-2xl font-bold">
         <span
@@ -78,7 +78,9 @@ const Navbar = () => {
         {/* Dark Mode Toggle - Mobile */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 hover:bg-(--bg-paper) transition-all rounded group relative"
+          className={`p-2 flex items-center justify-center rounded group relative transition-all cursor-pointer ${
+            isDark ? "hover:bg-(--accent)" : "hover:bg-(--bg-paper)"
+          }`}
           aria-label={
             isDark ? "Switch to parchment mode" : "Switch to candlelight mode"
           }
@@ -206,7 +208,7 @@ const Navbar = () => {
         </button>
 
         {/* MOBILE BTN */}
-        <div>
+        <div className="flex items-center">
           <SignedIn>
             <UserButton />
           </SignedIn>
@@ -225,7 +227,7 @@ const Navbar = () => {
           {/* Close button */}
           <button
             onClick={() => setOpen(false)}
-            className="absolute top-8 right-8 p-2 hover:text-[var(--accent)] transition-colors"
+            className="absolute top-8 right-8 p-2 hover:text-(--accent) transition-colors"
             aria-label="Close menu"
           >
             <svg
@@ -249,7 +251,7 @@ const Navbar = () => {
             <Link
               to="/write"
               onClick={() => setOpen(false)}
-              className="border-b-2 border-soft hover:text-[var(--accent)] transition-colors no-underline"
+              className="border-b-2 border-soft hover:text-(--accent) transition-colors no-underline"
             >
               Write
             </Link>
@@ -257,7 +259,7 @@ const Navbar = () => {
               <Link
                 to="/blogs?sort=trending"
                 onClick={() => setOpen(false)}
-                className="hover:text-[var(--accent)] transition-colors no-underline"
+                className="hover:text-(--accent) transition-colors no-underline"
               >
                 Trending
               </Link>

@@ -94,12 +94,17 @@
   .btn-vintage {
     font-family: "Libre Baskerville", serif;
     font-size: 0.75rem;
+    line-height: 1.4;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     border: 1px solid var(--border-soft);
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     background: transparent;
     color: var(--text-main);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
   }
 
   .btn-vintage:hover {
@@ -275,6 +280,7 @@
   font-size: 18px !important;
   line-height: 1.75 !important;
   min-height: 400px !important;
+  height: auto !important;
 }
 
 .quill-editor-wrapper .ql-editor {
@@ -286,9 +292,6 @@
   color: var(--text-muted) !important;
   font-style: italic !important;
   left: 1.5rem !important;
-}
-.quill-editor-wrapper .ql-editor.ql-blank p {
-  height: 400px !important;
 }
 .quill-editor-wrapper .ql-toolbar button {
   color: var(--text-main) !important;
@@ -363,4 +366,8 @@
 .quill-editor-wrapper .ql-container p:has(img),
 .quill-editor-wrapper .ql-container p:has(video) {
   margin: 1.5rem 0;
+}
+
+.quill-editor-wrapper .ql-editor.ql-blank p {
+  min-height: 20em
 }

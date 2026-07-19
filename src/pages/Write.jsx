@@ -52,10 +52,13 @@ const Write = () => {
 
   if (!isSignedIn) {
     return (
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="article text-center">
           <h1 className="mb-6">You are not logged in to write an article</h1>
-          <a href="/login" className="btn-vintage inline-block no-underline">
+          <a
+            href="/login"
+            className="inline-flex items-center justify-center whitespace-nowrap [font-family:'Libre_Baskerville',serif] text-xs tracking-[0.15em] uppercase border border-[var(--border-soft)] px-6 py-3 bg-transparent text-[var(--text-main)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors no-underline"
+          >
             Login to Continue
           </a>
         </div>
@@ -272,7 +275,7 @@ const Write = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-0 md:py-2">
+    <div className="max-w-350 mx-auto px-0 sm:px-6 lg:px-0 py-0 md:py-2">
       <div className="bg-paper border border-soft mx-auto my-8 md:my-10 px-4 md:px-8 py-4 md:py-12">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="flex items-center justify-between pb-6 border-b border-soft ">
@@ -299,7 +302,7 @@ const Write = () => {
             <select
               name="category"
               required
-              className="w-full sm:w-auto px-4 py-3 bg-transparent border border-soft focus:border-accent outline-none transition-colors meta cursor-pointer"
+              className="w-full sm:w-auto px-4 py-3 bg-paper border border-soft focus:border-accent outline-none transition-colors meta cursor-pointer"
             >
               <option value="general">General</option>
               <option value="lifestyle">Lifestyle</option>
@@ -320,36 +323,41 @@ const Write = () => {
           </FormField>
 
           <FormField label="Article Content">
-            <div className="quill-editor-wrapper border border-soft flex overflow-y-auto">
-              {/* Upload buttons sidebar */}
-              <div className="flex flex-col gap-2 p-2 border-r border-soft bg-paper sticky top-0">
+            <div className="quill-editor-wrapper border border-soft flex flex-col sm:flex-row">
+              {/* Upload buttons toolbar */}
+              <div className="flex flex-row sm:flex-col gap-2 p-2 border-b sm:border-b-0 sm:border-r border-soft bg-paper sm:sticky sm:top-0">
                 <Upload
                   type="image"
                   onFileSelected={handleImageSelected}
                   deferUpload={true}
                 >
                   <div
-                    className="p-2 hover:bg-[var(--bg-main)] transition-colors rounded"
+                    className="w-11 h-11 flex items-center justify-center hover:bg-[var(--bg-main)] transition-colors rounded touch-manipulation"
                     title="Add image"
                   >
-                    <CustomImage src="/add-image.svg" width={35} height={35} />
+                    <CustomImage
+                      src="/add-image.svg"
+                      width={26}
+                      height={26}
+                      className="w-6 h-6 sm:w-7 sm:h-7"
+                    />
                   </div>
                 </Upload>
-                {/* <Upload 
-                  type="video" 
+                <Upload
+                  type="video"
                   onFileSelected={handleVideoSelected}
                   deferUpload={true}
                 >
-                  <div className="p-2 hover:bg-[var(--bg-main)] transition-colors rounded" title="Add video">
+                  <div className="w-11 h-11 flex items-center justify-center hover:bg-[var(--bg-main)] transition-colors rounded" title="Add video">
                     📽️
                   </div>
-                </Upload> */}
+                </Upload>
               </div>
 
               {/* Editor */}
               <ReactQuill
                 theme="snow"
-                className="flex-1"
+                className="flex-1 min-w-0 quill-mobile-editor"
                 value={value}
                 onChange={setValue}
                 placeholder="Begin writing your article..."
@@ -386,7 +394,7 @@ const Write = () => {
                           <button
                             type="button"
                             onClick={() => handleRemoveImage(img)}
-                            className="absolute top-1 right-1 bg-red-500 text-white p-1.5 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                            className="absolute top-1 right-1 bg-red-500 text-white w-8 h-8 flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-red-600 touch-manipulation"
                             title="Remove image"
                           >
                             ✕
@@ -423,7 +431,7 @@ const Write = () => {
                           <button
                             type="button"
                             onClick={() => handleRemoveVideo(vid)}
-                            className="absolute top-1 right-1 bg-red-500 text-white p-1.5 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                            className="absolute top-1 right-1 bg-red-500 text-white w-8 h-8 flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-red-600 touch-manipulation"
                             title="Remove video"
                           >
                             ✕
@@ -444,8 +452,8 @@ const Write = () => {
                 )}
               </div>
             )}
-          <div className="flex flex-col items-end ">
-            <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-stretch sm:items-end">
+            <div className="flex flex-col items-stretch sm:items-center gap-2">
               {/* Upload Progress */}
               {progress > 0 && progress < 100 && (
                 <div className="bg-paper space-y-1 w-full ">
@@ -470,7 +478,7 @@ const Write = () => {
                 disabled={
                   mutation.isPending || (progress > 0 && progress < 100)
                 }
-                className="btn-vintage px-8 py-3 text-base cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto [font-family:'Libre_Baskerville',serif] text-xs tracking-[0.15em] uppercase border border-[var(--border-soft)] px-8 py-3.5 bg-transparent text-[var(--text-main)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {mutation.isPending ? "Publishing..." : "Publish Article"}
               </button>

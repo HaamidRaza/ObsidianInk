@@ -72,7 +72,7 @@ const Comments = ({ blogId }) => {
             name="desc"
             required
             placeholder="Share your thoughts on this article..."
-            className="w-full min-h-[120px] p-4 bg-transparent border border-soft text-ink placeholder:text-muted placeholder:italic focus:outline-none focus:border-accent transition-colors resize-y font-serif"
+            className="w-full min-h-30 p-4 bg-transparent border border-soft text-ink placeholder:text-muted placeholder:italic focus:outline-none focus:border-accent transition-colors resize-y font-serif"
             disabled={mutation.isPending}
           />
           <button
@@ -84,7 +84,7 @@ const Comments = ({ blogId }) => {
           </button>
         </form>
       ) : (
-        <div className="mb-4 p-4 bg-[var(--bg-main)] border border-soft text-center">
+        <div className="mb-4 p-4 bg-(--bg-main) border border-soft text-center">
           <p className="text-muted">
             Please{" "}
             <a href="/login" className="accent hover:underline">
